@@ -41,8 +41,8 @@ export default function Explore() {
     </View>
   );
 
-  const specialties = ['Pneumologista', 'Geriatria', 'Oftalmologista', 'Dermatologista'];
-  const locations = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito santo'];
+  const specialties = ['Angiologista', 'Otorrinolaringologista', 'Mastologista', 'Dermatologista'];
+  const locations = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba'];
 
   return (
     <ScrollView style={styles.container}>

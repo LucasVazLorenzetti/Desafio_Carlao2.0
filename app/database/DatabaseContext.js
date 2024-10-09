@@ -63,6 +63,7 @@ const initializeDatabase = async (db) => {
   `);
 };
 
+
 /**
  * DatabaseProvider wraps the app and provides the SQLite context.
  */

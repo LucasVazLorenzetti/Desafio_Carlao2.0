@@ -62,7 +62,6 @@ export default function Consultation() {
             <Text style={styles.medicalItem}>• Faringite</Text>
           </View>
         </View>
-
         {/* Consultas do Usuário */}
         <View style={styles.appointmentsSection}>
           <Text style={styles.sectionTitle}>Minhas Consultas</Text>

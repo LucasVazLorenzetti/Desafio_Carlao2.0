@@ -6,6 +6,9 @@ import { useRouter } from 'expo-router';
 import { useDatabase } from './database/useDatabase';
 import { useSQLiteContext } from 'expo-sqlite';
 
+/**
+ * Login component handles user authentication and registration.
+ */
 export default function App() {
   const router = useRouter();
   const { registerUser, loginUser } = useDatabase();
@@ -14,10 +17,12 @@ export default function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Registration Form 1 State
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+  // Registration Form 2 State
   const [cep, setCep] = useState('');
   const [endereco, setEndereco] = useState('');
   const [numero, setNumero] = useState('');
@@ -29,6 +34,9 @@ export default function App() {
 
   const db = useSQLiteContext();
 
+  /**
+   * Handles user login.
+   */
   const handleLogin = async () => {
     try {
       const user = await loginUser(username, password);
@@ -43,7 +51,9 @@ export default function App() {
     }
   };
 
- 
+  /**
+   * Handles user registration.
+   */
   const handleRegister = async () => {
     if (password !== repeatPassword) {
       Alert.alert('Erro', 'As senhas não coincidem');
@@ -59,6 +69,7 @@ export default function App() {
         `Usuário: ${username}\nSenha: ${password}\nNome: ${name}\nEmail: ${email}\nEndereço: ${endereco}\nNúmero: ${numero}\nComplemento: ${complemento}\nCEP: ${cep}\nTelefone: ${telefone}\nPlano: ${selectedPlan}`
       );
 
+      // Using a transaction to ensure all operations succeed or fail together
       await db.withTransactionAsync(async () => {
         await registerUser(username, password, name, email, endereco, numero, complemento, cep, telefone, selectedPlan);
       });
@@ -71,7 +82,9 @@ export default function App() {
     }
   };
 
- 
+  /**
+   * Fetches address information based on CEP.
+   */
   const fetchCep = async () => {
     const cleanedCep = cep.replace(/\D/g, '');
     if (cleanedCep.length !== 8) {
